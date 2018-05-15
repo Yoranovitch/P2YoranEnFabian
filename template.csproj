@@ -66,6 +66,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Classes\Application.cs" />
+    <Compile Include="Classes\Camera.cs" />
+    <Compile Include="Classes\Intersection.cs" />
+    <Compile Include="Classes\Light.cs" />
+    <Compile Include="Classes\Plane.cs" />
+    <Compile Include="Classes\Primitive.cs" />
+    <Compile Include="Classes\Raytracer.cs" />
+    <Compile Include="Classes\Scene.cs" />
+    <Compile Include="Classes\Sphere.cs" />
     <Compile Include="game.cs" />
     <Compile Include="surface.cs" />
     <Compile Include="template.cs" />
