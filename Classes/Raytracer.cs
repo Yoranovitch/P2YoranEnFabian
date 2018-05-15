@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 class Raytracer
 {
-    public void Render(Camera cam)
+    public void Render()
     {
 
     }
