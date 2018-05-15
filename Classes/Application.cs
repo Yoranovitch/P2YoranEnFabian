@@ -6,4 +6,10 @@ using System.Threading.Tasks;
 
 class Application
 {
+    Raytracer raytracer = new Raytracer();
+
+    public void Update()
+    {
+        raytracer.Render();
+    }
 }
