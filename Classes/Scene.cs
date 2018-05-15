@@ -8,4 +8,12 @@ class Scene
 {
     List<Primitive> primitives;
     List<Light> lights;
+
+    public Scene()
+    {
+        primitives.Add(new Plane());
+        primitives.Add(new Sphere());
+        primitives.Add(new Sphere());
+        primitives.Add(new Sphere());
+    }
 }
