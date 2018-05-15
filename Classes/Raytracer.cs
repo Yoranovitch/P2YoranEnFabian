@@ -12,17 +12,12 @@ namespace template
 
         public Raytracer()
         {
-            cam = new Camera();
+            //cam = new Camera();
         }
 
         public void Render(Camera cam)
         {
 
-        }
-
-        public void Update()
-        {
-            cam.Update();
         }
     }
 }

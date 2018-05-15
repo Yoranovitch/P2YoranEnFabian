@@ -9,7 +9,7 @@ namespace template
 {
     class Sphere : Primitive
     {
-        Vector3 position = new Vector3(0, 0, 0);
-        int radius;
+        //Vector3 position = new Vector3(0, 0, 0);
+        //int radius;
     }
 }

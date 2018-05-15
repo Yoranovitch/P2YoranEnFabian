@@ -10,9 +10,6 @@ namespace template
 {
     class Application
     {
-        public void HandleInput()
-        {
-            
-        }
+        
     }
 }

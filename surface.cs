@@ -38,7 +38,7 @@ namespace Template
 			GL.Disable( EnableCap.Blend );
 		}
 	}
-	public class Surface : Raytracer
+	public class Surface
 	{
 		public int width, height;
 		public int [] pixels;

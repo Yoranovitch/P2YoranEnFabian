@@ -2,21 +2,22 @@
 using System.IO;
 using template;
 
-namespace Template {
-
-class Game
+namespace Template
 {
-	public Surface screen;
-        public Raytracer ray;
 
-	public void Init()
-	{
-            ray = new Raytracer();
-	}
+    class Game
+    {
+        public Surface screen;
+        //       public Raytracer ray;
 
-	public void Tick()
-	{
-            ray.Update();
-	}
-}
+        public void Init()
+        {
+            //ray = new Raytracer();
+        }
+
+        public void Tick()
+        {
+
+        }
+    }
 } 

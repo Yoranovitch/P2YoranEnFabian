@@ -8,6 +8,6 @@ namespace template
 {
     class Intersection
     {
-        int interdistance;
+        int IntersectionDistance;
     }
 }
