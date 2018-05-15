@@ -4,8 +4,7 @@ using System.Drawing.Imaging;
 using OpenTK;
 using OpenTK.Graphics;
 using OpenTK.Graphics.OpenGL;
-using template;
-
+ 
 namespace Template
 {
 	public class Sprite
