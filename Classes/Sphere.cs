@@ -8,10 +8,17 @@ using System.Threading.Tasks;
 class Sphere : Primitive
 {
     Vector3 position = new Vector3(0, 0, 0);
-    int radius;
+    int radius = 1;
 
     public Sphere()
     {
 
     }
+
+    public override void DrawDebug(float sceneWidth, float sceneHeight)
+    {
+        base.DrawDebug(sceneWidth, sceneHeight);
+
+    }
+
 }
