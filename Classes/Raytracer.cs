@@ -11,10 +11,12 @@ class Raytracer
     Vector3 direction = new Vector3(0, 0, 1);
     float distance = 0;
     Scene scene;
+    Camera camera;
 
     public Raytracer()
     {
         scene = new Scene();
+        camera = new Camera();
     }
 
     public void Render()
@@ -24,7 +26,10 @@ class Raytracer
 
     public void DrawDebug()
     {
-
+        foreach(Primitive p in scene.primitives)
+        {
+            p.DrawDebug(10, 10);
+        }
     }
 
 }

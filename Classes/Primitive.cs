@@ -11,6 +11,7 @@ class Primitive
 
     public virtual Intersection Intersects(Vector3 rayOrigin, Vector3 rayDirection)
     {
+
         return null;
     }
 
