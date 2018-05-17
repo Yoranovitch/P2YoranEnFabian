@@ -17,7 +17,7 @@ namespace Template
         {
             application.Update();
 
-            //screen.Clear(0);
+            screen.Clear(0);
             //int l = screen.width / 2 + 80;
             //int r = 50;
             //for (int i = 0; i < 3; i++)
