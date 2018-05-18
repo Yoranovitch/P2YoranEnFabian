@@ -7,12 +7,12 @@ using System.Threading.Tasks;
 
 class Sphere : Primitive
 {
-    Vector3 position = new Vector3(0, 0, 0);
-    int radius = 1;
+    int radius;
 
-    public Sphere()
+    public Sphere(Vector3 pos, int rad)
     {
-
+        position = pos;
+        radius = rad;
     }
 
     public override void DrawDebug(float sceneWidth, float sceneHeight)

@@ -9,10 +9,11 @@ namespace Template
     {
         public Surface screen;
 
-        Application application = new Application();
+        Application application;
 
         public void Init()
         {
+            application = new Application(screen);
         }
 
         public void Tick()

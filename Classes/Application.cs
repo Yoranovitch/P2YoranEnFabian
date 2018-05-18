@@ -9,12 +9,13 @@ using OpenTK.Input;
 
 class Application
 {
-    Raytracer raytracer = new Raytracer();
+    Raytracer raytracer;
     bool drawDebug;
     KeyboardState prevState;
 
-    public Application()
+    public Application(Surface sur)
     {
+        raytracer = new Raytracer(sur);
         drawDebug = false;
         prevState = Keyboard.GetState();
     }
