@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Template;
 
 class Primitive
 {
@@ -15,7 +16,7 @@ class Primitive
         return null;
     }
 
-    public virtual void DrawDebug(float sceneWidth, float sceneHeight)
+    public virtual void DrawDebug(float sceneWidth, float sceneHeight, Surface sur)
     {
     }
 }

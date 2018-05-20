@@ -26,8 +26,6 @@ class Application
             raytracer.DrawDebug();
         else
             raytracer.Render();
-            //GL.Color3(1.0f, 0.0f, 0.0f); GL.Begin(PrimitiveType.Triangles); GL.Vertex3(-0.5f, -0.5f, 0); GL.Vertex3(0.5f, -0.5f, 0); GL.Vertex3(-0.5f, 0.5f, 0); GL.End();
-
     }
 
     public void HandleInput()

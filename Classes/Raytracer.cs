@@ -59,7 +59,7 @@ class Raytracer
     {
         foreach(Primitive p in scene.primitives)
         {
-            p.DrawDebug(10, 10);
+            p.DrawDebug(10, 10, Sur);
         }
     }
 
