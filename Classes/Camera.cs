@@ -4,14 +4,22 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Template;
 
 class Camera
 {
-    Vector3 position = new Vector3(0, 0, 0);
-    Vector3 direction = new Vector3(0, 0, 1);
+    public Vector3 position = new Vector3(5, 5, 0);
+    public Vector3 direction = new Vector3(0, 0, 1);
+    Vector3 middle; 
+    public Vector3 p0, p1, p2;
+    float distancetoscreen = 3;
+    Surface screen;
 
     public Camera()
     {
-
+        middle = position + Vector3.Normalize(direction) * distancetoscreen;
+        p0 = middle + new Vector3(-1, -1, 0);
+        p1 = middle + new Vector3(-1, 1, 0);
+        p2 = middle + new Vector3(1, -1, 0);
     }
 }

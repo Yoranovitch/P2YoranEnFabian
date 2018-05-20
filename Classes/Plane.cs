@@ -8,12 +8,20 @@ using Template;
 
 class Plane : Primitive
 {
-    Vector3 normal = new Vector3(0, 0, 0);
+    Vector3 normal;
     int origindistance;
     public Surface screen;
 
-    public Plane()
+    public Plane(Vector3 pos, int distance, Vector3 norm)
     {
+        position = pos;
+        origindistance = distance;
+        normal = norm;
+    }
+
+    public override void DrawDebug(float sceneWidth, float sceneHeight, Surface sur)
+    {
+        base.DrawDebug(sceneWidth, sceneHeight, sur);
 
     }
 }
