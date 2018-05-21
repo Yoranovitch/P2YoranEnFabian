@@ -17,7 +17,7 @@ namespace Template
         }
 
         public void Tick()
-        {
+        {        
         }
 
         public void RenderGL()
