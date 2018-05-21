@@ -21,9 +21,9 @@ class Application
 
     public void Update()
     {
-        if (drawDebug)
+        //if (drawDebug)
             raytracer.DrawDebug();
-        else
+        //else
             raytracer.Render();
     }
 

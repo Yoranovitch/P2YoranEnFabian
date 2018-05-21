@@ -8,7 +8,7 @@ using Template;
 
 class Primitive
 {
-    public Vector3 color = new Vector3(0.5f, 0.5f, 0.5f);
+    public Vector3 color = new Vector3(1.0f, 1.0f, 0.5f);
     public Vector3 position;
 
     public virtual Intersection Intersects(Vector3 rayOrigin, Vector3 rayDirection)

@@ -11,10 +11,11 @@ class Sphere : Primitive
 {
     public int radius;
 
-    public Sphere(Vector3 pos, int rad)
+    public Sphere(Vector3 pos, int rad, Vector3 col)
     {
         position = pos;
         radius = rad;
+        color = col;
     }
 
     public override void DrawDebug(float sceneWidth, float sceneHeight, Surface sur)

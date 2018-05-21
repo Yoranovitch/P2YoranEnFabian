@@ -12,7 +12,7 @@ class Camera
     public Vector3 direction = new Vector3(0, 0, 1);
     Vector3 middle; 
     public Vector3 p0, p1, p2;
-    float distancetoscreen = 3;
+    float distancetoscreen = 1.5f;
     Surface screen;
 
     public Camera()
