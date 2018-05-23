@@ -19,9 +19,9 @@ class Plane : Primitive
         normal = norm;
     }
 
-    public override void DrawDebug(float sceneWidth, float sceneHeight, Surface sur)
+    public override void DrawDebug(float sceneWidth, float sceneHeight)
     {
-        base.DrawDebug(sceneWidth, sceneHeight, sur);
+        base.DrawDebug(sceneWidth, sceneHeight);
 
     }
 }

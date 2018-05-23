@@ -16,7 +16,7 @@ class Primitive
         return null;
     }
 
-    public virtual void DrawDebug(float sceneWidth, float sceneHeight, Surface sur)
+    public virtual void DrawDebug(float sceneWidth, float sceneHeight)
     {
     }
 }
