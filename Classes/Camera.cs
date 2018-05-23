@@ -10,9 +10,9 @@ class Camera
 {
     public Vector3 position = new Vector3(5, 5, 0);
     public Vector3 direction = new Vector3(0, 0, 1);
-    Vector3 middle; 
+    public Vector3 middle; 
     public Vector3 p0, p1, p2;
-    float distancetoscreen = 1.5f;
+    public float distancetoscreen = 1.0f;
     Surface screen;
 
     public Camera()
