@@ -16,15 +16,14 @@ class Application
     public Application(Surface sur)
     {
         raytracer = new Raytracer(sur);
-        drawDebug = true;
         prevState = Keyboard.GetState();
     }
 
     public void Update()
     {
-        if (drawDebug)
+        //if (drawDebug)
             raytracer.DrawDebug();
-        else
+        //else
             raytracer.Render();
     }
 
