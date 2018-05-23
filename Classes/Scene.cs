@@ -18,7 +18,7 @@ class Scene
         primitives = new List<Primitive>();
         lights = new List<Light>();
         intersections = new List<Intersection>();
-        primitives.Add(new Sphere(new Vector3(5, 5, 5), 2, new Vector3(1.0f, 1.0f, 1.0f)));
+        primitives.Add(new Sphere(new Vector3(5, 5, 5), 2, new Vector3(0.0f, 1.0f, 0.0f)));
     }
 
     public void Intersections(Ray ray)
