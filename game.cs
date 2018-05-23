@@ -18,6 +18,7 @@ namespace Template
 
         public void Tick()
         {
+            screen.Line(0, 0, 5, 5, 0xffffff);
         }
 
         public void RenderGL()

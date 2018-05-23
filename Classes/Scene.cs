@@ -13,6 +13,9 @@ class Scene
 
     public Scene()
     {
+        primitives = new List<Primitive>();
+        lights = new List<Light>();
+
         primitives.Add(new Sphere(new Vector3(0, 0, 5), 2));
         primitives.Add(new Sphere(new Vector3(-2, 0, 5), 2));
         primitives.Add(new Sphere(new Vector3(2, 0, 5), 2));

@@ -16,7 +16,7 @@ class Application
     public Application(Surface sur)
     {
         raytracer = new Raytracer(sur);
-        drawDebug = false;
+        drawDebug = true;
         prevState = Keyboard.GetState();
     }
 
