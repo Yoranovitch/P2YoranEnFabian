@@ -11,14 +11,15 @@ class Scene
     public List<Primitive> primitives;
     public List<Light> lights;
     public List<Intersection> intersections;
-    float finalresult;
+    public float finalresult, distance;
 
     public Scene()
     {
         primitives = new List<Primitive>();
         lights = new List<Light>();
         intersections = new List<Intersection>();
-        primitives.Add(new Sphere(new Vector3(5, 5, 5), 2, new Vector3(0.0f, 1.0f, 0.0f)));
+        primitives.Add(new Sphere(new Vector3(4, 5, 5), 2, new Vector3(0.0f, 1.0f, 0.0f)));
+        primitives.Add(new Sphere(new Vector3(6, 5, 5), 2, new Vector3(0.0f, 0.0f, 1.0f)));
     }
 
     public void Intersections(Ray ray)
@@ -26,8 +27,9 @@ class Scene
         float a, b, c, dis, result1, result2;
         Vector3 diff;
         Intersection i1 = null;
+        distance = ray.raydistance;
 
-        foreach(Sphere p in primitives)
+        foreach (Sphere p in primitives)
         {
             diff = ray.start - p.position;
             a = Vector3.Dot(ray.direction, ray.direction);
@@ -45,14 +47,17 @@ class Scene
                 else
                     finalresult = Math.Max(result1, result2);
 
-                i1 = new Intersection(p, finalresult, ray);
+                if(finalresult < distance)
+                {
+                    distance = finalresult;
+                    i1 = new Intersection(p, distance, ray);
+                }
 
                 i1.x = ray.X;
                 i1.y = ray.Y;
-
-                intersections.Add(i1);
-                break; 
             }
-        } 
+        }
+        if(i1 != null)
+            intersections.Add(i1);
     }
 }

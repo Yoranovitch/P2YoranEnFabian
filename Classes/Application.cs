@@ -29,8 +29,8 @@ class Application
 
     public void HandleInput()
     {
-        if (prevState.IsKeyUp(Key.S) && Keyboard.GetState().IsKeyDown(Key.S))
-            drawDebug = !drawDebug;
-        prevState = Keyboard.GetState();
+        //if (prevState.IsKeyUp(Key.S) && Keyboard.GetState().IsKeyDown(Key.S))
+        //    drawDebug = !drawDebug;
+        //prevState = Keyboard.GetState();
     }
 }
