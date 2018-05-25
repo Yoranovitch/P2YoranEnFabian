@@ -80,7 +80,7 @@ class Raytracer
 
         foreach(Intersection i in scene.intersections)
         {
-            Sur.pixels[i.x + i.y * Sur.width] = Color(i.color);
+            Sur.pixels[i.x + i.y * Sur.width] = Color(i.color / (i.distance / 2));
         }
     }
 
@@ -105,14 +105,6 @@ class Raytracer
         Sur.Line((int)Coordinates(camera.position).X - 10, (int)Coordinates(camera.position).Y + 20, (int)Coordinates(camera.position).X, (int)Coordinates(camera.position).Y, 0xffffff);
 
         Sur.Line((int)Coordinates(camera.p1).X, (int)Coordinates(camera.p1).Y, (int)Coordinates(camera.p2).X, (int)Coordinates(camera.p2).Y, 0xffffff);
-
-        //for (float i = 0.0f; i < 2.1f; i += 0.1f)
-        //{
-        //    float a = -1.0f + i;
-        //    Vector3 b = Vector3.Normalize(new Vector3(a, 1, 0));
-        //    int c = 500;
-        //    Sur.Line((int)Coordinates(camera.position).X, (int)Coordinates(camera.position).Y, (int)Coordinates(camera.position).X + (int)(c * b.X), (int)Coordinates(camera.position).Y - (int)(c * b.Y), 0x888888);
-        //}
     }
 
 }
