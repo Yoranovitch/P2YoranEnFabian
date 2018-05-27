@@ -9,7 +9,7 @@ using static Raytracer;
 class Intersection
 {
     public int x, y;
-    public Vector3 position, color;
+    public Vector3 position, color, normal;
     public Primitive Object;
     public float distance;
     public Ray ray;
@@ -21,5 +21,6 @@ class Intersection
         distance = a;
         position = r.start + r.direction * distance;
         color = p.color;
+        normal = Vector3.Normalize(position - Object.position);
     }
 }
