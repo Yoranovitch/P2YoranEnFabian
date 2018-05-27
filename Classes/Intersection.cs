@@ -13,8 +13,9 @@ class Intersection
     public Primitive Object;
     public float distance;
     public Ray ray;
+    public bool reflexive;
 
-    public Intersection(Primitive p, float a, Ray r)
+    public Intersection(Primitive p, float a, Ray r, bool refl)
     {
         Object = p;
         ray = r;
@@ -22,5 +23,6 @@ class Intersection
         position = r.start + r.direction * distance;
         color = p.color;
         normal = Vector3.Normalize(position - Object.position);
+        reflexive = refl;
     }
 }

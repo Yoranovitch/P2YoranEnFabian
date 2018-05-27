@@ -20,8 +20,8 @@ class Scene
         planes = new List<Plane>();
         lights = new List<Light>();
         intersections = new List<Intersection>();
-        spheres.Add(new Sphere(new Vector3(3, 5, 6), 2, new Vector3(0.0f, 1.0f, 0.0f)));
-        spheres.Add(new Sphere(new Vector3(6, 5, 4), 2, new Vector3(0.0f, 0.0f, 1.0f)));
+        spheres.Add(new Sphere(new Vector3(3, 5, 5), 2, new Vector3(0.0f, 1.0f, 0.0f), true));
+        spheres.Add(new Sphere(new Vector3(7, 5, 5), 2, new Vector3(0.0f, 0.0f, 1.0f), false));
         lights.Add(new Light(new Vector3(2, 5, 0), 3));
     }
 
@@ -84,7 +84,7 @@ class Scene
     {
         float a, b, c, dis, result1, result2;
         Vector3 diff;
-        Intersection i1 = null, i2 = null;
+        Intersection i1 = null;
         distance = ray.raydistance;
 
         foreach (Sphere p in spheres)
@@ -108,7 +108,7 @@ class Scene
                 if(finalresult < distance)
                 {
                     distance = finalresult;
-                    i1 = new Intersection(p, distance, ray);
+                    i1 = new Intersection(p, distance, ray, p.reflexive);
                 }
 
                 i1.x = ray.X;
