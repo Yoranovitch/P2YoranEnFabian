@@ -72,12 +72,12 @@ class Raytracer
             for (int j = 0; j < 512; j++)
             {
                 scene.Intersections(new Ray(camera.position, Directions(i, j), i, j));
-                if (j == 256 && i % 31 == 0)
+                if (j == 256 && i % 16 == 0)
                 {
                     float c = scene.distance * Sur.height / 10;
                     while ((int)Coordinates(camera.position).X + (int)(c * Directions(i, j).X) < Sur.width / 2)
                         c--;
-                    Sur.Line((int)Coordinates(camera.position).X, (int)Coordinates(camera.position).Y, (int)Coordinates(camera.position).X + (int)(c * Directions(i, j).X), (int)Coordinates(camera.position).Y - (int)(c * Directions(i, j).Z), 0x888888);
+                    Sur.Line((int)Coordinates(camera.position).X, (int)Coordinates(camera.position).Y, (int)Coordinates(camera.position).X + (int)(c * Directions(i, j).X), (int)Coordinates(camera.position).Y - (int)(c * Directions(i, j).Z), 0x444444);
                 }
             }
         }
@@ -85,6 +85,9 @@ class Raytracer
         foreach (Intersection i in scene.intersections)
         {         
             Sur.pixels[i.x + i.y * Sur.width] = scene.ShadowRays(i);
+            if (i.y == 256 && i.x % 16 == 0)
+                foreach (Light l in scene.lights)
+                    Sur.Line((int)Coordinates(i.position).X, (int)Coordinates(i.position).Y, (int)Coordinates(l.position).X, (int)Coordinates(l.position).Y, 0x888888);
         }
     }
 
@@ -109,6 +112,12 @@ class Raytracer
         Sur.Line((int)Coordinates(camera.position).X - 10, (int)Coordinates(camera.position).Y + 20, (int)Coordinates(camera.position).X, (int)Coordinates(camera.position).Y, 0xffffff);
 
         Sur.Line((int)Coordinates(camera.p1).X, (int)Coordinates(camera.p1).Y, (int)Coordinates(camera.p2).X, (int)Coordinates(camera.p2).Y, 0xffffff);
+
+        foreach(Light l in scene.lights)
+        {
+            Sur.Line((int)Coordinates(l.position).X - 10, (int)Coordinates(l.position).Y - 10, (int)Coordinates(l.position).X + 10, (int)Coordinates(l.position).Y + 10, 0xffffff);
+            Sur.Line((int)Coordinates(l.position).X - 10, (int)Coordinates(l.position).Y + 10, (int)Coordinates(l.position).X + 10, (int)Coordinates(l.position).Y - 10, 0xffffff);
+        }
     }
 
 }
