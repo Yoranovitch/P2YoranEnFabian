@@ -8,28 +8,32 @@ using static Raytracer;
 
 class Scene
 {
-    public List<Primitive> primitives;
+    public List<Sphere> spheres;
+    public List<Plane> planes;
     public List<Light> lights;
     public List<Intersection> intersections;
     public float finalresult, distance;
 
     public Scene()
     {
-        primitives = new List<Primitive>();
+        spheres = new List<Sphere>();
+        planes = new List<Plane>();
         lights = new List<Light>();
         intersections = new List<Intersection>();
-        primitives.Add(new Sphere(new Vector3(4, 5, 5), 2, new Vector3(0.0f, 1.0f, 0.0f)));
-        primitives.Add(new Sphere(new Vector3(6, 5, 5), 2, new Vector3(0.0f, 0.0f, 1.0f)));
+        spheres.Add(new Sphere(new Vector3(4, 5, 5), 2, new Vector3(0.0f, 1.0f, 0.0f)));
+        spheres.Add(new Sphere(new Vector3(6, 5, 5), 2, new Vector3(0.0f, 0.0f, 1.0f)));
+        //planes.Add(new Plane(new Vector3(0, 5, 5), 5, new Vector3(1, 0, 0), new Vector3(1.0f, 0.0f, 0.0f)));
+        lights.Add(new Light(new Vector3(0, 5, 2)));
     }
 
     public void Intersections(Ray ray)
     {
-        float a, b, c, dis, result1, result2;
-        Vector3 diff;
-        Intersection i1 = null;
+        float a, b, c, f, dis, result1, result2;
+        Vector3 diff, d, e;
+        Intersection i1 = null, i2 = null;
         distance = ray.raydistance;
 
-        foreach (Sphere p in primitives)
+        foreach (Sphere p in spheres)
         {
             diff = ray.start - p.position;
             a = Vector3.Dot(ray.direction, ray.direction);
@@ -57,7 +61,29 @@ class Scene
                 i1.y = ray.Y;
             }
         }
-        if(i1 != null)
+
+        //distance = ray.raydistance;
+
+        //foreach (Plane p in planes)
+        //{
+        //    d = (p.position - ray.start) * p.normal;
+        //    e = (ray.direction - p.normal);
+        //    f = d.X / e.X + d.Y / e.Y + d.Z / e.Z;
+
+        //    i2 = new Intersection(p, f, ray);
+        //    i2.x = ray.X;
+        //    i2.y = ray.Y;
+
+        //    f = -(Vector3.Dot(ray.start, p.normal) + p.origindistance) / (Vector3.Dot(ray.direction, p.normal));
+        //    if(f >= 0 && f < distance)
+        //    {
+        //        i2 = new Intersection(p, f, ray);
+        //    }
+        //}
+
+        //if (i2 != null)
+        //    intersections.Add(i2);
+        if (i1 != null)
             intersections.Add(i1);
     }
 }
