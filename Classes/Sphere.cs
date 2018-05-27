@@ -21,14 +21,5 @@ class Sphere : Primitive
     public override void DrawDebug(float sceneWidth, float sceneHeight)
     {
         base.DrawDebug(sceneWidth, sceneHeight);
-
-        //for (double i = 0.0; i < 360; i++)
-        //{
-        //    double angle = i * Math.PI / 180;
-        //    int x = (int)(p.position.X + Sur.width + p.radius * Math.Cos(angle));
-        //    int y = (int)(p.position.Z + 1 + p.radius * Math.Sin(angle));
-        //    //int Location = x + y * (int)sceneWidth;
-        //    //sur.pixels[Location] = 255;
-        //}
     }
 }

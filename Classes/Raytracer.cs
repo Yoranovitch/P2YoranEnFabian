@@ -69,7 +69,7 @@ class Raytracer
             for (int j = 0; j < 512; j++)
             {
                 scene.Intersections(new Ray(camera.position, Directions(i, j), i, j));
-                if(j == 256 && i % 16 == 0)
+                if (j == 256 && i % 16 == 0)
                 {
                     float c = scene.distance * Sur.height / 10;
                     Sur.Line((int)Coordinates(camera.position).X, (int)Coordinates(camera.position).Y, (int)Coordinates(camera.position).X + (int)(c * Directions(i, j).X), (int)Coordinates(camera.position).Y - (int)(c * Directions(i, j).Z), 0x888888);
@@ -77,15 +77,15 @@ class Raytracer
             }
         }
 
-        foreach(Intersection i in scene.intersections)
+        foreach (Intersection i in scene.intersections)
         {
-            Sur.pixels[i.x + i.y * Sur.width] = Color(i.color);
+            Sur.pixels[i.x + i.y * Sur.width] = Color(i.color / (i.distance - 2));
         }
     }
 
     public void DrawDebug()
     {
-        foreach(Sphere p in scene.primitives)
+        foreach(Sphere p in scene.spheres)
         {
             p.DrawDebug(512, 512);
             for (double i = 0.0; i < 360; i++)
@@ -104,14 +104,6 @@ class Raytracer
         Sur.Line((int)Coordinates(camera.position).X - 10, (int)Coordinates(camera.position).Y + 20, (int)Coordinates(camera.position).X, (int)Coordinates(camera.position).Y, 0xffffff);
 
         Sur.Line((int)Coordinates(camera.p1).X, (int)Coordinates(camera.p1).Y, (int)Coordinates(camera.p2).X, (int)Coordinates(camera.p2).Y, 0xffffff);
-
-        //for (float i = 0.0f; i < 2.1f; i += 0.1f)
-        //{
-        //    float a = -1.0f + i;
-        //    Vector3 b = Vector3.Normalize(new Vector3(a, 1, 0));
-        //    int c = 500;
-        //    Sur.Line((int)Coordinates(camera.position).X, (int)Coordinates(camera.position).Y, (int)Coordinates(camera.position).X + (int)(c * b.X), (int)Coordinates(camera.position).Y - (int)(c * b.Y), 0x888888);
-        //}
     }
 
 }
