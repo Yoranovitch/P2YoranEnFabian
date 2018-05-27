@@ -72,9 +72,11 @@ class Raytracer
             for (int j = 0; j < 512; j++)
             {
                 scene.Intersections(new Ray(camera.position, Directions(i, j), i, j));
-                if (j == 256 && i % 16 == 0)
+                if (j == 256 && i % 31 == 0)
                 {
                     float c = scene.distance * Sur.height / 10;
+                    while ((int)Coordinates(camera.position).X + (int)(c * Directions(i, j).X) < Sur.width / 2)
+                        c--;
                     Sur.Line((int)Coordinates(camera.position).X, (int)Coordinates(camera.position).Y, (int)Coordinates(camera.position).X + (int)(c * Directions(i, j).X), (int)Coordinates(camera.position).Y - (int)(c * Directions(i, j).Z), 0x888888);
                 }
             }
