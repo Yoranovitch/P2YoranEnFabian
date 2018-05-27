@@ -6,7 +6,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Template;
-using OpenTK.Graphics.OpenGL;
 
 class Raytracer
 {
@@ -30,6 +29,8 @@ class Raytracer
         public Vector3 start, direction;
         public int X, Y;
         public float raydistance;
+        public bool lightcollision;
+
         public Ray(Vector3 a, Vector3 b, int x, int y)
         {
             start = a;
@@ -37,6 +38,7 @@ class Raytracer
             raydistance = 10;
             X = x;
             Y = y;
+            lightcollision = false;
         }
     }
 
@@ -70,7 +72,7 @@ class Raytracer
             for (int j = 0; j < 512; j++)
             {
                 scene.Intersections(new Ray(camera.position, Directions(i, j), i, j));
-                if(j == 256 && i % 16 == 0)
+                if (j == 256 && i % 16 == 0)
                 {
                     float c = scene.distance * Sur.height / 10;
                     Sur.Line((int)Coordinates(camera.position).X, (int)Coordinates(camera.position).Y, (int)Coordinates(camera.position).X + (int)(c * Directions(i, j).X), (int)Coordinates(camera.position).Y - (int)(c * Directions(i, j).Z), 0x888888);
@@ -78,15 +80,15 @@ class Raytracer
             }
         }
 
-        foreach(Intersection i in scene.intersections)
-        {
-            Sur.pixels[i.x + i.y * Sur.width] = Color(i.color / (i.distance / 2));
+        foreach (Intersection i in scene.intersections)
+        {         
+            Sur.pixels[i.x + i.y * Sur.width] = scene.ShadowRays(i);
         }
     }
 
     public void DrawDebug()
     {
-        foreach(Sphere p in scene.primitives)
+        foreach(Sphere p in scene.spheres)
         {
             p.DrawDebug(512, 512);
             for (double i = 0.0; i < 360; i++)

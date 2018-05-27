@@ -7,5 +7,12 @@ using System.Threading.Tasks;
 
 class Light
 {
-    Vector3 location = new Vector3(0, 0, 0);
+    public Vector3 position;
+    public float lightintensity;
+
+    public Light(Vector3 pos, float intensity)
+    {
+        position = pos;
+        lightintensity = intensity;
+    }
 }
