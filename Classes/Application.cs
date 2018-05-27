@@ -31,11 +31,11 @@ class Application
 
     public void HandleInput()
     {
-        if (prevState.IsKeyUp(Key.A) && Keyboard.GetState().IsKeyDown(Key.A))
-            Camera.MoveLeft();
-            //drawDebug = !drawDebug;
-        if (prevState.IsKeyUp(Key.D) && Keyboard.GetState().IsKeyDown(Key.D))
-            Camera.MoveRight();
-            prevState = Keyboard.GetState();
+        //if (prevState.IsKeyUp(Key.A) && Keyboard.GetState().IsKeyDown(Key.A))
+        //    Camera.MoveLeft();
+        //    //drawDebug = !drawDebug;
+        //if (prevState.IsKeyUp(Key.D) && Keyboard.GetState().IsKeyDown(Key.D))
+        //    Camera.MoveRight();
+        //    prevState = Keyboard.GetState();
     }
 }

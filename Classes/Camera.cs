@@ -24,10 +24,10 @@ class Camera
     }
     public void MoveLeft()
     {
-        position += new Vector3(-1, 0, 0);
+        position.X--;
     }
     public void MoveRight()
     {
-        position += new Vector3(1, 0, 0);
+        position.X++;
     }
 }
