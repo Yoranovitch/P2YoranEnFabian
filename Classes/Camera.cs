@@ -22,4 +22,12 @@ class Camera
         p1 = middle + new Vector3(-1, 1, 0);
         p2 = middle + new Vector3(1, -1, 0);
     }
+    public void MoveLeft()
+    {
+        position += new Vector3(-1, 0, 0);
+    }
+    public void MoveRight()
+    {
+        position += new Vector3(1, 0, 0);
+    }
 }

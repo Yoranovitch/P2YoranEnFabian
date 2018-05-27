@@ -10,12 +10,14 @@ using OpenTK.Input;
 class Application
 {
     Raytracer raytracer;
+    Camera camera;
     bool drawDebug;
     KeyboardState prevState;
 
     public Application(Surface sur)
     {
         raytracer = new Raytracer(sur);
+        camera = new Camera();
         prevState = Keyboard.GetState();
     }
 
@@ -29,8 +31,11 @@ class Application
 
     public void HandleInput()
     {
-        //if (prevState.IsKeyUp(Key.S) && Keyboard.GetState().IsKeyDown(Key.S))
-        //    drawDebug = !drawDebug;
-        //prevState = Keyboard.GetState();
+        if (prevState.IsKeyUp(Key.A) && Keyboard.GetState().IsKeyDown(Key.A))
+            Camera.MoveLeft();
+            //drawDebug = !drawDebug;
+        if (prevState.IsKeyUp(Key.D) && Keyboard.GetState().IsKeyDown(Key.D))
+            Camera.MoveRight();
+            prevState = Keyboard.GetState();
     }
 }
