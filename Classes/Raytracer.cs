@@ -29,6 +29,8 @@ class Raytracer
         public Vector3 start, direction;
         public int X, Y;
         public float raydistance;
+        public bool lightcollision;
+
         public Ray(Vector3 a, Vector3 b, int x, int y)
         {
             start = a;
@@ -36,6 +38,7 @@ class Raytracer
             raydistance = 10;
             X = x;
             Y = y;
+            lightcollision = false;
         }
     }
 
@@ -78,8 +81,8 @@ class Raytracer
         }
 
         foreach (Intersection i in scene.intersections)
-        {
-            Sur.pixels[i.x + i.y * Sur.width] = Color(i.color / (i.distance - 2));
+        {         
+            Sur.pixels[i.x + i.y * Sur.width] = scene.ShadowRays(i);
         }
     }
 
