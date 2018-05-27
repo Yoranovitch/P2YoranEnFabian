@@ -20,8 +20,8 @@ class Scene
         planes = new List<Plane>();
         lights = new List<Light>();
         intersections = new List<Intersection>();
-        spheres.Add(new Sphere(new Vector3(4, 5, 5), 2, new Vector3(0.0f, 1.0f, 0.0f)));
-        spheres.Add(new Sphere(new Vector3(6, 5, 5), 2, new Vector3(0.0f, 0.0f, 1.0f)));
+        spheres.Add(new Sphere(new Vector3(4, 5, 5), 2, new Vector3(255 / 255f, 224 / 255f, 189 / 255f)));// (0.0f, 1.0f, 0.0f)));
+        spheres.Add(new Sphere(new Vector3(6, 5, 5), 2, new Vector3(255 / 255f, 224 / 255f, 189 / 255f))); //(0.0f, 0.0f, 1.0f)));
         lights.Add(new Light(new Vector3(5, 5, 0), 3));
         //lights.Add(new Light(new Vector3(7, 5, 0), 4));
     }
