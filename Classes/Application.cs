@@ -29,6 +29,22 @@ class Application
 
     public void HandleInput()
     {
+        if (Keyboard.GetState().IsKeyDown(Key.A))
+        {
+            camera.direction.X -= 0.1f;
+            camera.p0.Z -= 0.1f;
+            camera.p1.Z -= 0.1f;
+            camera.p2.Z += 0.1f;
+            camera.middle.Z += 0.1f;
+        }
+        if (Keyboard.GetState().IsKeyDown(Key.D))
+        {
+            camera.direction.X += 0.1f;
+            camera.p0.Z += 0.1f;
+            camera.p1.Z += 0.1f;
+            camera.p2.Z -= 0.1f;
+            camera.middle.Z = 0.1f;
+        }
         if (Keyboard.GetState().IsKeyDown(Key.Right))
         {
             camera.position.X += 0.1f;
