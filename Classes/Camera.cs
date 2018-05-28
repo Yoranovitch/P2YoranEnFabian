@@ -15,19 +15,11 @@ class Camera
     public float distancetoscreen = 1.0f;
     Surface screen;
 
-    public Camera()
+    public Camera()//Vector3 position, Vector3 direction)
     {
         middle = position + Vector3.Normalize(direction) * distancetoscreen;
         p0 = middle + new Vector3(-1, -1, 0);
         p1 = middle + new Vector3(-1, 1, 0);
         p2 = middle + new Vector3(1, -1, 0);
-    }
-    public void MoveLeft()
-    {
-        position.X--;
-    }
-    public void MoveRight()
-    {
-        position.X++;
     }
 }

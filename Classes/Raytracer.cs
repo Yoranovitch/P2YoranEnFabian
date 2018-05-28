@@ -14,7 +14,7 @@ class Raytracer
     float distance = 10;
     Scene scene;
     Surface Sur;
-    Camera camera;
+    public Camera camera;
 
     public Raytracer(Surface sur)
     {

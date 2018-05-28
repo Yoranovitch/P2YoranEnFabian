@@ -17,12 +17,15 @@ namespace Template
         }
 
         public void Tick()
-        {        
+        {
+            screen.Clear(0x000000);
+            application.Update();
+            application.HandleInput();
         }
 
         public void RenderGL()
         {
-            application.Update();
+            
         }
     }
 }
