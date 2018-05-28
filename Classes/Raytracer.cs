@@ -89,6 +89,7 @@ class Raytracer
                 foreach (Light l in scene.lights)
                     Sur.Line((int)Coordinates(i.position).X, (int)Coordinates(i.position).Y, (int)Coordinates(l.position).X, (int)Coordinates(l.position).Y, 0x888888);
         }
+        scene.intersections.Clear();
     }
 
     public void DrawDebug()
