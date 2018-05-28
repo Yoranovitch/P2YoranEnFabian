@@ -18,7 +18,7 @@ class Application
     public Application(Surface sur)
     {
         raytracer = new Raytracer(sur);
-        camera = raytracer.camera;//new Camera();
+        camera = raytracer.camera;
         prevState = Keyboard.GetState();
     }
 
@@ -34,10 +34,7 @@ class Application
     public void HandleInput()
     {
         if (prevState.IsKeyUp(Key.Right) && Keyboard.GetState().IsKeyDown(Key.Right))
-        {
-            camera.position.X += 0.1f;
-        }
-            
+            camera.position.X += 0.1f;            
         if (prevState.IsKeyUp(Key.Left) && Keyboard.GetState().IsKeyDown(Key.Left))
             camera.position.X -= 0.1f;
         if (prevState.IsKeyUp(Key.Up) && Keyboard.GetState().IsKeyDown(Key.Up))
