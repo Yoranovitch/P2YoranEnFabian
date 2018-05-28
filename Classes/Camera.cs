@@ -13,11 +13,12 @@ class Camera
     public Vector3 middle; 
     public Vector3 p0, p1, p2;
     public float distancetoscreen = 1.0f;
-    //Surface screen;
 
     public Camera()
     {
+        // Middle of the camera plane 
         middle = position + Vector3.Normalize(direction) * distancetoscreen;
+        // Corners of the camera plane
         p0 = middle + new Vector3(-1, -1, 0);
         p1 = middle + new Vector3(-1, 1, 0);
         p2 = middle + new Vector3(1, -1, 0);

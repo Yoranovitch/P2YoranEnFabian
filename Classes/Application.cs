@@ -23,18 +23,21 @@ class Application
 
     public void Update()
     {
-            raytracer.DrawDebug();
-            raytracer.Render();
+        raytracer.DrawDebug();
+        raytracer.Render();
     }
 
+    // Camera Movement
     public void HandleInput()
     {
+        // Turn left
         if (Keyboard.GetState().IsKeyDown(Key.A))
         {
             camera.p0.Z -= 0.1f;
             camera.p1.Z -= 0.1f;
             camera.p2.Z += 0.1f;
         }
+        // Turn right
         if (Keyboard.GetState().IsKeyDown(Key.D))
         {
             camera.p0.Z += 0.1f;
@@ -53,6 +56,7 @@ class Application
             camera.p1.Z += 0.1f;
             camera.p2.Z -= 0.1f;
         }
+        // Move right
         if (Keyboard.GetState().IsKeyDown(Key.Right))
         {
             camera.position.X += 0.1f;
@@ -61,7 +65,7 @@ class Application
             camera.p2.X += 0.1f;
             camera.middle.X += 0.1f;
         }
-            
+        // Move left 
         if (Keyboard.GetState().IsKeyDown(Key.Left))
         {
             camera.position.X -= 0.1f;
@@ -70,6 +74,7 @@ class Application
             camera.p2.X -= 0.1f;
             camera.middle.X -= 0.1f;
         }
+        // Move up
         if (Keyboard.GetState().IsKeyDown(Key.Up))
         {
             camera.position.Y -= 0.1f;
@@ -78,6 +83,7 @@ class Application
             camera.p2.Y -= 0.1f;
             camera.middle.Y -= 0.1f;
         }
+        // Move down
         if (Keyboard.GetState().IsKeyDown(Key.Down))
         {
             camera.position.Y += 0.1f;
