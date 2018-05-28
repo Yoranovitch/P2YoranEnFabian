@@ -12,7 +12,6 @@ class Application
 {
     Raytracer raytracer;
     Camera camera;
-    //bool drawDebug;
     KeyboardState prevState;
 
     public Application(Surface sur)
@@ -24,28 +23,60 @@ class Application
 
     public void Update()
     {
-        //if (drawDebug)
             raytracer.DrawDebug();
-        //else
-        
             raytracer.Render();
     }
 
     public void HandleInput()
     {
-        if (prevState.IsKeyUp(Key.Right) && Keyboard.GetState().IsKeyDown(Key.Right))
-            camera.position.X += 0.1f;            
-        if (prevState.IsKeyUp(Key.Left) && Keyboard.GetState().IsKeyDown(Key.Left))
+        if (Keyboard.GetState().IsKeyDown(Key.Right))
+        {
+            camera.position.X += 0.1f;
+            camera.p0.X += 0.1f;
+            camera.p1.X += 0.1f;
+            camera.p2.X += 0.1f;
+            camera.middle.X += 0.1f;
+        }
+            
+        if (Keyboard.GetState().IsKeyDown(Key.Left))
+        {
             camera.position.X -= 0.1f;
-        if (prevState.IsKeyUp(Key.Up) && Keyboard.GetState().IsKeyDown(Key.Up))
+            camera.p0.X -= 0.1f;
+            camera.p1.X -= 0.1f;
+            camera.p2.X -= 0.1f;
+            camera.middle.X -= 0.1f;
+        }
+        if (Keyboard.GetState().IsKeyDown(Key.Up))
+        {
             camera.position.Y -= 0.1f;
-        if (prevState.IsKeyUp(Key.Down) && Keyboard.GetState().IsKeyDown(Key.Down))
+            camera.p0.Y -= 0.1f;
+            camera.p1.Y -= 0.1f;
+            camera.p2.Y -= 0.1f;
+            camera.middle.Y -= 0.1f;
+        }
+        if (Keyboard.GetState().IsKeyDown(Key.Down))
+        {
             camera.position.Y += 0.1f;
-        if (prevState.IsKeyUp(Key.W) && Keyboard.GetState().IsKeyDown(Key.W))
+            camera.p0.Y += 0.1f;
+            camera.p1.Y += 0.1f;
+            camera.p2.Y += 0.1f;
+            camera.middle.Y += 0.1f;
+        }
+        if (Keyboard.GetState().IsKeyDown(Key.W))
+        {
             camera.position.Z += 0.1f;
-        if (prevState.IsKeyUp(Key.S) && Keyboard.GetState().IsKeyDown(Key.S))
+            camera.p0.Z += 0.1f;
+            camera.p1.Z += 0.1f;
+            camera.p2.Z += 0.1f;
+            camera.middle.Z += 0.1f;
+        }
+        if (Keyboard.GetState().IsKeyDown(Key.S))
+        {
             camera.position.Z -= 0.1f;
-        prevState = Keyboard.GetState();
-        //drawDebug = !drawDebug;
+            camera.p0.Z -= 0.1f;
+            camera.p1.Z -= 0.1f;
+            camera.p2.Z -= 0.1f;
+            camera.middle.Z -= 0.1f;
+        }       
     }
 }

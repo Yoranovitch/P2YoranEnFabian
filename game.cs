@@ -23,9 +23,10 @@ namespace Template
 
         public void RenderGL()
         {
-            screen.Clear(0x000000);
-            application.Update();
+            screen.Clear(0);
             application.HandleInput();
+            application.Update();
+            
         }
     }
 }
