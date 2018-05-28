@@ -12,7 +12,7 @@ class Scene
     public List<Plane> planes;
     public List<Light> lights;
     public List<Intersection> intersections;
-    public float finalresult, distance;
+    public float finalresult, distance, shadowdistance;
 
     public Scene()
     {
@@ -41,6 +41,7 @@ class Scene
             ray = new Ray(i.position, direction, i.x, i.y);
             ray.raydistance = length;
             CheckSpheres(ray);
+            shadowdistance = ray.raydistance;
 
             if (!ray.lightcollision)
             {

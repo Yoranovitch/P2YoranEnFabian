@@ -35,7 +35,7 @@ class Raytracer
         {
             start = a;
             direction = b;
-            raydistance = 10;
+            raydistance = 100;
             X = x;
             Y = y;
             lightcollision = false;
@@ -87,7 +87,11 @@ class Raytracer
             Sur.pixels[i.x + i.y * Sur.width] = scene.ShadowRays(i);
             if (i.y == 256 && i.x % 16 == 0)
                 foreach (Light l in scene.lights)
-                    Sur.Line((int)Coordinates(i.position).X, (int)Coordinates(i.position).Y, (int)Coordinates(l.position).X, (int)Coordinates(l.position).Y, 0x888888);
+                {
+                    Vector3 dir = Vector3.Normalize(l.position - i.position);
+                    float c = scene.shadowdistance * Sur.height / 10;
+                    Sur.Line((int)Coordinates(i.position).X, (int)Coordinates(i.position).Y, (int)Coordinates(i.position).X + (int)(c * dir.X), (int)Coordinates(i.position).Y - (int)(c * dir.Z), 0x888888);
+                }
         }
         scene.intersections.Clear();
     }
