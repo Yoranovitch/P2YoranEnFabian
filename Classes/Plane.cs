@@ -10,7 +10,6 @@ class Plane : Primitive
 {
     public Vector3 normal;
     public int origindistance;
-    public Surface screen;
 
     public Plane(Vector3 pos, int distance, Vector3 norm, Vector3 col)
     {
