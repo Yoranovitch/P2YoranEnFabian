@@ -16,12 +16,15 @@ class Scene
 
     public Scene()
     {
+        // Initialises the lists
         spheres = new List<Sphere>();
         planes = new List<Plane>();
         lights = new List<Light>();
         intersections = new List<Intersection>();
-        spheres.Add(new Sphere(new Vector3(3, 5, 5), 2, new Vector3(0.0f, 1.0f, 0.0f), true));
-        spheres.Add(new Sphere(new Vector3(7, 5, 5), 2, new Vector3(0.0f, 0.0f, 1.0f), false));
+
+        // Adds the primitives and lights
+        spheres.Add(new Sphere(new Vector3(6, 5, 8), 1, new Vector3(0.0f, 1.0f, 0.0f), true));
+        spheres.Add(new Sphere(new Vector3(4, 5, 4), 1, new Vector3(0.0f, 0.0f, 1.0f), false));
         lights.Add(new Light(new Vector3(2, 5, 0), 3));
     }
 
@@ -31,18 +34,23 @@ class Scene
         float length;
         Ray ray;
         float kleurfactor = 0;
-
+ 
+        // Creates a new ray
+        // If this ray not intersects return a color to color the intersection that was used to shoot the ray from
         foreach(Light l in lights)
         {
             diff = l.position - i.position;
             direction = Vector3.Normalize(diff);
             length = diff.Length;
 
-            ray = new Ray(i.position, direction, i.x, i.y);
+            ray = new Ray(i.position + (0.1f * direction), direction, i.x, i.y);
             ray.raydistance = length;
+
             CheckSpheres(ray);
+
             shadowdistance = ray.raydistance;
 
+            // Creates the colorintensity depending on the distance to the lightsource and its intensity
             if (!ray.lightcollision)
             {
                 kleurfactor += Vector3.Dot(i.normal, diff) / (length * length) * l.lightintensity;
@@ -50,9 +58,13 @@ class Scene
                     kleurfactor = 1;
             }          
         }
+
+        // Returns a color
         return Color(i.color * kleurfactor);
     }
 
+    // Shoots a ray from a intersection to a every single light
+    // Checks if there is a new intersection
     public void CheckSpheres(Ray ray)
     {
         float a, b, c, dis, result1, result2;
@@ -60,12 +72,15 @@ class Scene
 
         foreach (Sphere s in spheres)
         {
+            // Creates a discriminant
             diff = ray.start - s.position;
             a = Vector3.Dot(ray.direction, ray.direction);
             b = 2 * Vector3.Dot(diff, ray.direction);
             c = Vector3.Dot(diff, diff) - (s.radius * s.radius);
             dis = (b * b) - (4 * a * c);
 
+            // Checks for intersections 
+            // Stores the distance to the closest intersection 
             if (dis > 0)
             {
                 result1 = (float)((-b + Math.Sqrt(dis)) / (2 * a));
@@ -81,6 +96,8 @@ class Scene
         }
     }
 
+    // Checks if the given ray intersects with primitives in the scene
+    // If so, add the closest intersection to the list with intersections
     public void Intersections(Ray ray)
     {
         float a, b, c, dis, result1, result2;
@@ -90,12 +107,15 @@ class Scene
 
         foreach (Sphere p in spheres)
         {
+            // Creates a discriminant
             diff = ray.start - p.position;
             a = Vector3.Dot(ray.direction, ray.direction);
             b = 2 * Vector3.Dot(diff, ray.direction);
             c = Vector3.Dot(diff, diff) - (p.radius * p.radius);
             dis = (b * b) - (4 * a * c);
 
+            // Checks for intersections and store the distance to the closest in "distance"
+            // Makes a intersection for every intersection that is closer than the previous one
             if(dis > 0)
             {
                 result1 = (float)((-b + Math.Sqrt(dis)) / (2 * a));
@@ -116,6 +136,8 @@ class Scene
                 i1.y = ray.Y;
             }
         }
+
+        // Adds for every ray the closest intersection to the list with intersections
         if (i1 != null)
             intersections.Add(i1);
     }
