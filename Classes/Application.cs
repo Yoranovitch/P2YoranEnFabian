@@ -14,7 +14,6 @@ class Application
         raytracer = new Raytracer(sur);
         camera = raytracer.camera;
         prevState = Keyboard.GetState();
-        camera.FOVDegrees = 45;
     }
 
     public void Update()
