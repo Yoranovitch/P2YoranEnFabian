@@ -80,6 +80,8 @@ class Application
             camera.p1.Y -= 0.1f;
             camera.p2.Y -= 0.1f;
             camera.middle.Y -= 0.1f;
+            //foreach (Plane p in raytracer.scene.planes)
+            //    p.startdistance += 0.1f;
         }
         // Move down
         if (Keyboard.GetState().IsKeyDown(Key.Down))
@@ -89,6 +91,8 @@ class Application
             camera.p1.Y += 0.1f;
             camera.p2.Y += 0.1f;
             camera.middle.Y += 0.1f;
+            //foreach (Plane p in raytracer.scene.planes)
+            //    p.startdistance -= 0.1f;
         }
         // Move forward
         if (Keyboard.GetState().IsKeyDown(Key.Enter))
