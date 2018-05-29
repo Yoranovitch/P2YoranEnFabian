@@ -56,7 +56,7 @@ class Scene
                 kleurfactor += Vector3.Dot(i.normal, diff) / (length * length) * l.lightintensity;
                 if (kleurfactor > 1)
                     kleurfactor = 1;
-            }          
+            }
         }
 
         // Returns a color

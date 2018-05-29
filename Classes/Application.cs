@@ -59,14 +59,14 @@ class Application
             camera.p2.X = (camera.position.X + camera.distancetocorner * (float)Math.Cos(angle - camera.angletocorner));
             camera.p2.Z = (camera.position.Z + camera.distancetocorner * (float)Math.Sin(angle - camera.angletocorner));
         }
-        //// Turn up
+        // Turn up
         //if (Keyboard.GetState().IsKeyDown(Key.W))
         //{
         //    camera.p0.Z += 0.1f;
         //    camera.p1.Z -= 0.1f;
         //    camera.p2.Z += 0.1f;
         //}
-        //// Turn down
+        // Turn down
         //if (Keyboard.GetState().IsKeyDown(Key.S))
         //{
         //    camera.p0.Z -= 0.1f;
