@@ -7,7 +7,7 @@ class Raytracer
     Vector3 origin;
     Vector3 direction;
     float distance = 10;
-    Scene scene;
+    public Scene scene;
     Surface Sur;
     public Camera camera;
 

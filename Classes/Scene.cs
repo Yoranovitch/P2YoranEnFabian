@@ -10,9 +10,13 @@ class Scene
     public List<Light> lights;
     public List<Intersection> intersections;
     public float finalresult, distance, shadowdistance, t;
+    public Vector3 v, u;
 
     public Scene()
     {
+        v = new Vector3(1, 0, 0);
+        u = new Vector3(0, 0, 1);
+
         // Initialises the lists
         spheres = new List<Sphere>();
         planes = new List<Plane>();
@@ -59,9 +63,9 @@ class Scene
             if (i.prim is Plane)
             {
                 Vector3 intersectionposition = i.position - i.prim.position;
-                if (Math.Sin(Vector3.Dot(intersectionposition, i.prim.v)) < 0 && Math.Sin(Vector3.Dot(intersectionposition, i.prim.u)) < 0)
+                if (Math.Sin(Vector3.Dot(intersectionposition, v)) < 0 && Math.Sin(Vector3.Dot(intersectionposition, u)) < 0)
                     i.color = new Vector3(0.0f, 0.0f, 0.0f);
-                else if (Math.Sin(Vector3.Dot(intersectionposition, i.prim.v)) < 0 || Math.Sin(Vector3.Dot(intersectionposition, i.prim.u)) < 0)
+                else if (Math.Sin(Vector3.Dot(intersectionposition, v)) < 0 || Math.Sin(Vector3.Dot(intersectionposition, u)) < 0)
                     i.color = new Vector3(1.0f, 1.0f, 1.0f);
                 else
                     i.color = new Vector3(0.0f, 0.0f, 0.0f);
@@ -149,7 +153,7 @@ class Scene
 
         foreach(Plane p in planes)
         {
-            float d = 4;
+            float d = 4;//p.startdistance;
             t = (Vector3.Dot(ray.start, p.normal) + d) / Vector3.Dot(ray.direction, p.normal);
             if (Vector3.Dot(p.normal, ray.direction) < 0)
             {
