@@ -18,7 +18,8 @@ class Camera
     public Camera()
     {
         middle = position + Vector3.Normalize(direction) * distancetoscreen;
-        p0 = middle + new Vector3(-1, -1, 0);
+        
+        = middle + new Vector3(-1, -1, 0);
         p1 = middle + new Vector3(-1, 1, 0);
         p2 = middle + new Vector3(1, -1, 0);
     }
