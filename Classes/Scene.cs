@@ -27,56 +27,57 @@ class Scene
         spheres.Add(new Sphere(new Vector3(7, 5, 5), 1, new Vector3(0.0f, 1.0f, 0.0f), true));
         spheres.Add(new Sphere(new Vector3(3, 5, 5), 1, new Vector3(0.0f, 0.0f, 1.0f), false));
         lights.Add(new Light(new Vector3(2, 5, 0), 3));
+        lights.Add(new Light(new Vector3(8, 5, 0), 3));
         planes.Add(new Plane(new Vector3(5, 0, 5), 5, new Vector3(0, -1, 0), new Vector3(1.0f, 1.0f, 1.0f)));
     }
 
-    public int Mirror(Intersection i)
-    {
-        Vector3 nextdirection = i.ray.direction - 2 * i.prim.normal * (Vector3.Dot(i.ray.direction, i.prim.normal));
-        Ray ray = new Ray(i.position, nextdirection, i.x, i.y);
+    //public int Mirror(Intersection i)
+    //{
+    //    Vector3 nextdirection = i.ray.direction - 2 * i.prim.normal * (Vector3.Dot(i.ray.direction, i.prim.normal));
+    //    Ray ray = new Ray(i.position, nextdirection, i.x, i.y);
 
-        Vector3 idiff;
-        Intersection nexti = null;
-        float d, e, f, dis2, result3, result4;
-        distance2 = ray.raydistance;
+    //    Vector3 idiff;
+    //    Intersection nexti = null;
+    //    float d, e, f, dis2, result3, result4;
+    //    distance2 = ray.raydistance;
 
-        foreach (Sphere s in spheres)
-        {
-            // Creates a discriminant
-            idiff = ray.start - s.position;
-            d = Vector3.Dot(ray.direction, ray.direction);
-            e = 2 * Vector3.Dot(idiff, ray.direction);
-            f = Vector3.Dot(idiff, idiff) - (s.radius * s.radius);
-            dis2 = (e * e) - (4 * d * f);
+    //    foreach (Sphere s in spheres)
+    //    {
+    //        // Creates a discriminant
+    //        idiff = ray.start - s.position;
+    //        d = Vector3.Dot(ray.direction, ray.direction);
+    //        e = 2 * Vector3.Dot(idiff, ray.direction);
+    //        f = Vector3.Dot(idiff, idiff) - (s.radius * s.radius);
+    //        dis2 = (e * e) - (4 * d * f);
 
-            // Checks for intersections and store the distance to the closest in "distance"
-            // Makes a intersection for every intersection that is closer than the previous one
-            if (dis2 > 0)
-            {
-                result3 = (float)((-e + Math.Sqrt(dis2)) / (2 * d));
-                result4 = (float)((-e - Math.Sqrt(dis2)) / (2 * d));
+    //        // Checks for intersections and store the distance to the closest in "distance"
+    //        // Makes a intersection for every intersection that is closer than the previous one
+    //        if (dis2 > 0)
+    //        {
+    //            result3 = (float)((-e + Math.Sqrt(dis2)) / (2 * d));
+    //            result4 = (float)((-e - Math.Sqrt(dis2)) / (2 * d));
 
-                if (result3 > 0 && result4 > 0)
-                    finalresult2 = Math.Min(result3, result4);
-                else
-                    finalresult2 = Math.Max(result3, result4);
+    //            if (result3 > 0 && result4 > 0)
+    //                finalresult2 = Math.Min(result3, result4);
+    //            else
+    //                finalresult2 = Math.Max(result3, result4);
 
-                if (finalresult2 < distance2)
-                {
-                    distance2 = finalresult2;
-                    nexti = new Intersection(s, distance2, ray, s.reflexive);
-                }
+    //            if (finalresult2 < distance2)
+    //            {
+    //                distance2 = finalresult2;
+    //                nexti = new Intersection(s, distance2, ray, s.reflexive);
+    //            }
 
-                nexti.x = ray.X;
-                nexti.y = ray.Y;
-            }
-        }
-        //if (nexti.reflexive)
-        //    Mirror(nexti);
-        if(nexti != null)
-            return ShadowRays(nexti);
-        return 0;
-    }
+    //            nexti.x = ray.X;
+    //            nexti.y = ray.Y;
+    //        }
+    //    }
+    //    //if (nexti.reflexive)
+    //    //    Mirror(nexti);
+    //    if(nexti != null)
+    //        return ShadowRays(nexti);
+    //    return 0;
+    //}
 
     public int ShadowRays(Intersection i)
     {

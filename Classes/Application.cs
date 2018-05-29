@@ -26,17 +26,17 @@ class Application
     // Camera Movement
     public void HandleInput()
     {
-        camera.CalculateCamera();
-
         // Increase POV
-        if (Keyboard.GetState().IsKeyDown(Key.P))
+        if (Keyboard.GetState().IsKeyDown(Key.W))
         {
             camera.FOVDegrees --;
+            camera.CalculateCamera();
         }
         // Decrease POV
-        if (Keyboard.GetState().IsKeyDown(Key.M))
+        if (Keyboard.GetState().IsKeyDown(Key.S))
         {
             camera.FOVDegrees ++;
+            camera.CalculateCamera();
         }
 
         // Turn left
@@ -79,8 +79,8 @@ class Application
             camera.p1.Y -= 0.1f;
             camera.p2.Y -= 0.1f;
             camera.middle.Y -= 0.1f;
-            //foreach (Plane p in raytracer.scene.planes)
-            //    p.startdistance += 0.1f;
+            foreach (Plane p in raytracer.scene.planes)
+                p.startdistance -= 0.2f;
         }
         // Move down
         if (Keyboard.GetState().IsKeyDown(Key.Down))
@@ -90,8 +90,8 @@ class Application
             camera.p1.Y += 0.1f;
             camera.p2.Y += 0.1f;
             camera.middle.Y += 0.1f;
-            //foreach (Plane p in raytracer.scene.planes)
-            //    p.startdistance -= 0.1f;
+            foreach (Plane p in raytracer.scene.planes)
+                p.startdistance += 0.2f;
         }
         // Move forward
         if (Keyboard.GetState().IsKeyDown(Key.Enter))
@@ -116,6 +116,8 @@ class Application
     void HandleCorners()
     {
         double angle = i * Math.PI / 180;
+        camera.middle.X = (camera.position.X + camera.FOV * (float)(Math.Cos(angle)));
+        camera.middle.Z = (camera.position.Z + camera.FOV * (float)(Math.Sin(angle)));
         camera.p0.X = (camera.position.X + camera.distancetocorner * (float)Math.Cos(angle + camera.angletocorner));
         camera.p0.Z = (camera.position.Z + camera.distancetocorner * (float)Math.Sin(angle + camera.angletocorner));
         camera.p1.X = camera.p0.X;

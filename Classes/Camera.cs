@@ -20,6 +20,8 @@ class Camera
         // The distance from the camera to the screen
         FOV = ((0.5f * Screenheight) / (float)Math.Tan((FOVDegrees) * (Math.PI / 180)));
 
+        direction = middle - position;
+
         // Middle of the camera plane 
         middle = position + Vector3.Normalize(direction) * FOV;
 
@@ -28,7 +30,7 @@ class Camera
         p1 = middle + new Vector3(-1, 1, 0);
         p2 = middle + new Vector3(1, -1, 0);
 
-        angletocorner = Math.Sin(1 / FOV);
+        angletocorner = FOVDegrees * Math.PI / 180;
         distancetocorner = (float)Math.Sqrt(1 + (FOV * FOV));
     }
 }

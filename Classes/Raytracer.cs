@@ -89,11 +89,11 @@ class Raytracer
         foreach (Intersection i in scene.intersections)
         {         
             // Give the pixel that represent a intersection a color
-            if(i.reflexive)
-            {
-                Sur.pixels[i.x + i.y * Sur.width] = scene.Mirror(i);
-            }
-            else
+            //if(i.reflexive)
+            //{
+            //    Sur.pixels[i.x + i.y * Sur.width] = scene.Mirror(i);
+            //}
+            //else
                 Sur.pixels[i.x + i.y * Sur.width] = scene.ShadowRays(i);
 
             // Draw the shadowrays that belong to the intersections
@@ -102,7 +102,7 @@ class Raytracer
                     foreach (Light l in scene.lights)
                     {
                         Vector3 dir = Vector3.Normalize(l.position - i.position);
-                        float c = scene.shadowdistance * Sur.height / 10;
+                        float c = new Vector3(l.position - i.position).Length * Sur.height / 10;
                         Sur.Line((int)Coordinates(i.position).X, (int)Coordinates(i.position).Y, (int)Coordinates(i.position).X + (int)(c * dir.X), (int)Coordinates(i.position).Y - (int)(c * dir.Z), 0x888888);
                     }
         }
