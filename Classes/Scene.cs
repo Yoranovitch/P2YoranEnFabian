@@ -153,7 +153,7 @@ class Scene
 
         foreach(Plane p in planes)
         {
-            float d = 4;//p.startdistance;
+            float d = p.startdistance;
             t = (Vector3.Dot(ray.start, p.normal) + d) / Vector3.Dot(ray.direction, p.normal);
             if (Vector3.Dot(p.normal, ray.direction) < 0)
             {
