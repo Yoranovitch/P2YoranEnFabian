@@ -9,7 +9,7 @@ class Scene
     public List<Plane> planes;
     public List<Light> lights;
     public List<Intersection> intersections;
-    public float finalresult, distance, shadowdistance;
+    public float finalresult, distance, shadowdistance, t;
 
     public Scene()
     {
@@ -20,10 +20,10 @@ class Scene
         intersections = new List<Intersection>();
 
         // Adds the primitives and lights
-        spheres.Add(new Sphere(new Vector3(6, 5, 7), 2, new Vector3(0.0f, 1.0f, 0.0f), true));
-        spheres.Add(new Sphere(new Vector3(3, 5, 4), 1, new Vector3(0.0f, 0.0f, 1.0f), false));
+        spheres.Add(new Sphere(new Vector3(7, 5, 5), 1, new Vector3(0.0f, 1.0f, 0.0f), true));
+        spheres.Add(new Sphere(new Vector3(3, 5, 5), 1, new Vector3(0.0f, 0.0f, 1.0f), false));
         lights.Add(new Light(new Vector3(2, 5, 0), 3));
-        planes.Add(new Plane(new Vector3(5, 0, 5), 5, new Vector3(0, 1, 0), new Vector3(1.0f, 1.0f, 1.0f)));
+        planes.Add(new Plane(new Vector3(5, 0, 5), 5, new Vector3(0, -1, 0), new Vector3(1.0f, 0.0f, 0.0f)));
     }
 
     public int ShadowRays(Intersection i)
@@ -101,7 +101,7 @@ class Scene
     {
         float a, b, c, dis, result1, result2;
         Vector3 diff;
-        Intersection i1 = null;
+        Intersection i1 = null, i2 = null;
         distance = ray.raydistance;
 
         foreach (Sphere s in spheres)
@@ -138,7 +138,35 @@ class Scene
 
         foreach(Plane p in planes)
         {
+            float d = 0;
+            t = (-Vector3.Dot(ray.start, p.normal) + d) / Vector3.Dot(ray.direction, p.normal);
+            if (Vector3.Dot(p.normal, ray.direction) < 0)
+            {
+                Vector3 IntPoint = ray.start + (t * ray.direction);
+                i2 = new Intersection(p, t, ray, false);
+                i2.x = ray.X;
+                i2.y = ray.Y;
+            }
 
+        }
+        if (i1 != null && i2 == null)
+        {
+            intersections.Add(i1);
+        }
+        else if(i2 != null && i1 == null)
+        {
+            intersections.Add(i2);
+        }
+        else if(i2 != null && i1 != null)
+        {
+            if(t > distance)
+            {
+                intersections.Add(i2);
+            }
+            else
+            {
+                intersections.Add(i1);
+            }
         }
 
         // Adds for every ray the closest intersection to the list with intersections
