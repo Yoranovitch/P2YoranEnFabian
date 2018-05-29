@@ -7,7 +7,7 @@ class Camera
     public Vector3 direction = new Vector3(0, 0, 1);
     public Vector3 middle;
     public Vector3 p0, p1, p2;
-    public float FOV, distancetocorner, FOVDegrees = 45, Screenheight = 2;
+    public float FOV, distancetocorner, FOVDegrees, Screenheight = 2;
     public double angletocorner;
 
     public Camera()
