@@ -145,6 +145,8 @@ class Scene
                 i1.x = ray.X;
                 i1.y = ray.Y;
             }
+
+
         }
 
         foreach(Plane p in planes)

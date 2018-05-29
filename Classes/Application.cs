@@ -27,6 +27,7 @@ class Application
     // Camera Movement
     public void HandleInput()
     {
+        // Calculate the values of the Camera
         camera.CalculateCamera();
 
         // Increase POV
