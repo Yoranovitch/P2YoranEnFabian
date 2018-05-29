@@ -23,7 +23,7 @@ class Scene
         spheres.Add(new Sphere(new Vector3(7, 5, 5), 1, new Vector3(0.0f, 1.0f, 0.0f), true));
         spheres.Add(new Sphere(new Vector3(3, 5, 5), 1, new Vector3(0.0f, 0.0f, 1.0f), false));
         lights.Add(new Light(new Vector3(2, 5, 0), 3));
-        planes.Add(new Plane(new Vector3(5, 0, 5), 5, new Vector3(0, -1, 0), new Vector3(1.0f, 0.0f, 0.0f)));
+        planes.Add(new Plane(new Vector3(5, 0, 5), 5, new Vector3(0, -1, 0), new Vector3(1.0f, 1.0f, 1.0f)));
     }
 
     public int ShadowRays(Intersection i)
@@ -54,6 +54,17 @@ class Scene
                 kleurfactor += Vector3.Dot(i.normal, diff) / (length * length) * l.lightintensity;
                 if (kleurfactor > 1)
                     kleurfactor = 1;
+            }
+
+            if (i.prim is Plane)
+            {
+                Vector3 intersectionposition = i.position - i.prim.position;
+                if (Math.Sin(Vector3.Dot(intersectionposition, i.prim.v)) < 0 && Math.Sin(Vector3.Dot(intersectionposition, i.prim.u)) < 0)
+                    i.color = new Vector3(0.0f, 0.0f, 0.0f);
+                else if (Math.Sin(Vector3.Dot(intersectionposition, i.prim.v)) < 0 || Math.Sin(Vector3.Dot(intersectionposition, i.prim.u)) < 0)
+                    i.color = new Vector3(1.0f, 1.0f, 1.0f);
+                else
+                    i.color = new Vector3(0.0f, 0.0f, 0.0f);
             }
         }
 
@@ -128,7 +139,7 @@ class Scene
                 if(finalresult < distance)
                 {
                     distance = finalresult;
-                    i1 = new Intersection(s, distance, ray, s.reflexive);
+                    i1 = new Intersection(s, distance, ray);
                 }
 
                 i1.x = ray.X;
@@ -138,39 +149,21 @@ class Scene
 
         foreach(Plane p in planes)
         {
-            float d = 0;
-            t = (-Vector3.Dot(ray.start, p.normal) + d) / Vector3.Dot(ray.direction, p.normal);
+            float d = 4;
+            t = (Vector3.Dot(ray.start, p.normal) + d) / Vector3.Dot(ray.direction, p.normal);
             if (Vector3.Dot(p.normal, ray.direction) < 0)
             {
                 Vector3 IntPoint = ray.start + (t * ray.direction);
-                i2 = new Intersection(p, t, ray, false);
+                i2 = new Intersection(p, t, ray);
                 i2.x = ray.X;
                 i2.y = ray.Y;
             }
+        }
 
-        }
-        if (i1 != null && i2 == null)
-        {
-            intersections.Add(i1);
-        }
-        else if(i2 != null && i1 == null)
-        {
+        // Adds for every ray its intersections to the list with intersections
+        if(i2 != null)
             intersections.Add(i2);
-        }
-        else if(i2 != null && i1 != null)
-        {
-            if(t > distance)
-            {
-                intersections.Add(i2);
-            }
-            else
-            {
-                intersections.Add(i1);
-            }
-        }
-
-        // Adds for every ray the closest intersection to the list with intersections
-        if (i1 != null)
+        if(i1 != null)
             intersections.Add(i1);
     }
 }
