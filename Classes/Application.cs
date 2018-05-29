@@ -26,15 +26,17 @@ class Application
     // Camera Movement
     public void HandleInput()
     {
+        camera.CalculateCamera();
 
+        // Increase POV
         if (Keyboard.GetState().IsKeyDown(Key.P))
         {
-            camera.FOV += 0.1f;
+            camera.FOVDegrees --;
         }
-
+        // Decrease POV
         if (Keyboard.GetState().IsKeyDown(Key.M))
         {
-            camera.FOV -= 0.1f;
+            camera.FOVDegrees ++;
         }
 
         // Turn left
