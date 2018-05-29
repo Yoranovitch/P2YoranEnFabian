@@ -13,6 +13,7 @@ class Application
     Raytracer raytracer;
     Camera camera;
     KeyboardState prevState;
+    int i = 90;
 
     public Application(Surface sur)
     {
@@ -33,29 +34,45 @@ class Application
         // Turn left
         if (Keyboard.GetState().IsKeyDown(Key.A))
         {
-            camera.p0.Z -= 0.1f;
-            camera.p1.Z -= 0.1f;
-            camera.p2.Z += 0.1f;
+            i++;
+            if (i >= 450)
+                i = 90;
+            double angle = i * Math.PI / 180;
+            camera.p0.X = (camera.position.X + camera.distancetocorner * (float)Math.Cos(angle + camera.angletocorner));
+            camera.p0.Z = (camera.position.Z + camera.distancetocorner * (float)Math.Sin(angle + camera.angletocorner));
+            camera.p1.X = (camera.position.X + camera.distancetocorner * (float)Math.Cos(angle + camera.angletocorner));
+            camera.p1.Z = (camera.position.Z + camera.distancetocorner * (float)Math.Sin(angle + camera.angletocorner));
+            camera.p2.X = (camera.position.X + camera.distancetocorner * (float)Math.Cos(angle - camera.angletocorner));
+            camera.p2.Z = (camera.position.Z + camera.distancetocorner * (float)Math.Sin(angle - camera.angletocorner));
         }
         // Turn right
         if (Keyboard.GetState().IsKeyDown(Key.D))
         {
-            camera.p0.Z += 0.1f;
-            camera.p1.Z += 0.1f;
-            camera.p2.Z -= 0.1f;
+            i--;
+            if (i < 0)
+                i = 450;
+            double angle = i * Math.PI / 180;
+            camera.p0.X = (camera.position.X + camera.distancetocorner * (float)Math.Cos(angle + camera.angletocorner));
+            camera.p0.Z = (camera.position.Z + camera.distancetocorner * (float)Math.Sin(angle + camera.angletocorner));
+            camera.p1.X = (camera.position.X + camera.distancetocorner * (float)Math.Cos(angle + camera.angletocorner));
+            camera.p1.Z = (camera.position.Z + camera.distancetocorner * (float)Math.Sin(angle + camera.angletocorner));
+            camera.p2.X = (camera.position.X + camera.distancetocorner * (float)Math.Cos(angle - camera.angletocorner));
+            camera.p2.Z = (camera.position.Z + camera.distancetocorner * (float)Math.Sin(angle - camera.angletocorner));
         }
-        if (Keyboard.GetState().IsKeyDown(Key.W))
-        {
-            camera.p0.Z += 0.1f;
-            camera.p1.Z -= 0.1f;
-            camera.p2.Z += 0.1f;
-        }
-        if (Keyboard.GetState().IsKeyDown(Key.S))
-        {
-            camera.p0.Z -= 0.1f;
-            camera.p1.Z += 0.1f;
-            camera.p2.Z -= 0.1f;
-        }
+        //// Turn up
+        //if (Keyboard.GetState().IsKeyDown(Key.W))
+        //{
+        //    camera.p0.Z += 0.1f;
+        //    camera.p1.Z -= 0.1f;
+        //    camera.p2.Z += 0.1f;
+        //}
+        //// Turn down
+        //if (Keyboard.GetState().IsKeyDown(Key.S))
+        //{
+        //    camera.p0.Z -= 0.1f;
+        //    camera.p1.Z += 0.1f;
+        //    camera.p2.Z -= 0.1f;
+        //}
         // Move right
         if (Keyboard.GetState().IsKeyDown(Key.Right))
         {
@@ -92,6 +109,7 @@ class Application
             camera.p2.Y += 0.1f;
             camera.middle.Y += 0.1f;
         }
+        // Move forward
         if (Keyboard.GetState().IsKeyDown(Key.Enter))
         {
             camera.position.Z += 0.1f;
@@ -100,7 +118,8 @@ class Application
             camera.p2.Z += 0.1f;
             camera.middle.Z += 0.1f;
         }
-        if (Keyboard.GetState().IsKeyDown(Key.LShift))
+        // Move backward
+        if (Keyboard.GetState().IsKeyDown(Key.RShift))
         {
             camera.position.Z -= 0.1f;
             camera.p0.Z -= 0.1f;

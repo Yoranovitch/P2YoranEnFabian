@@ -120,7 +120,7 @@ class Raytracer
             // Draw the circles belonging to the spheres in the scene
             for (double i = 0.0; i < 360; i++)
             {
-                double angle = i * Math.PI / 180;
+                double angle = i / 180 * Math.PI;
                 float x = (p.position.X + p.radius * (float)Math.Cos(angle));
                 float y = (p.position.Y);
                 float z = (p.position.Z + p.radius * (float)Math.Sin(angle));

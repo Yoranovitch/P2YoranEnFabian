@@ -12,7 +12,8 @@ class Camera
     public Vector3 direction = new Vector3(0, 0, 1);
     public Vector3 middle; 
     public Vector3 p0, p1, p2;
-    public float distancetoscreen = 1.0f;
+    public float distancetoscreen = 1.0f, distancetocorner;
+    public double angletocorner;
 
     public Camera()
     {
@@ -22,5 +23,8 @@ class Camera
         p0 = middle + new Vector3(-1, -1, 0);
         p1 = middle + new Vector3(-1, 1, 0);
         p2 = middle + new Vector3(1, -1, 0);
+
+        angletocorner = Math.Sin(1 / distancetoscreen);
+        distancetocorner = (float)Math.Sqrt(1 + (distancetoscreen * distancetoscreen));
     }
 }
