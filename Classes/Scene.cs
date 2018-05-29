@@ -26,6 +26,7 @@ class Scene
         spheres.Add(new Sphere(new Vector3(6, 5, 8), 1, new Vector3(0.0f, 1.0f, 0.0f), true));
         spheres.Add(new Sphere(new Vector3(4, 5, 4), 1, new Vector3(0.0f, 0.0f, 1.0f), false));
         lights.Add(new Light(new Vector3(2, 5, 0), 3));
+        planes.Add(new Plane(new Vector3(5, 0, 5), 5, new Vector3(0, 1, 0), new Vector3(1.0f, 1.0f, 1.0f)));
     }
 
     public int ShadowRays(Intersection i)
@@ -105,13 +106,13 @@ class Scene
         Intersection i1 = null;
         distance = ray.raydistance;
 
-        foreach (Sphere p in spheres)
+        foreach (Sphere s in spheres)
         {
             // Creates a discriminant
-            diff = ray.start - p.position;
+            diff = ray.start - s.position;
             a = Vector3.Dot(ray.direction, ray.direction);
             b = 2 * Vector3.Dot(diff, ray.direction);
-            c = Vector3.Dot(diff, diff) - (p.radius * p.radius);
+            c = Vector3.Dot(diff, diff) - (s.radius * s.radius);
             dis = (b * b) - (4 * a * c);
 
             // Checks for intersections and store the distance to the closest in "distance"
@@ -129,12 +130,17 @@ class Scene
                 if(finalresult < distance)
                 {
                     distance = finalresult;
-                    i1 = new Intersection(p, distance, ray, p.reflexive);
+                    i1 = new Intersection(s, distance, ray, s.reflexive);
                 }
 
                 i1.x = ray.X;
                 i1.y = ray.Y;
             }
+        }
+
+        foreach(Plane p in planes)
+        {
+
         }
 
         // Adds for every ray the closest intersection to the list with intersections
