@@ -13,7 +13,6 @@ class Application
     {
         raytracer = new Raytracer(sur);
         camera = raytracer.camera;
-        prevState = Keyboard.GetState();
     }
 
     public void Update()
@@ -113,6 +112,7 @@ class Application
         }       
     }
 
+    //Calculate the new coördinates of the corners and the middle for rotating
     void HandleCorners()
     {
         double angle = i * Math.PI / 180;
@@ -125,5 +125,4 @@ class Application
         camera.p2.X = (camera.position.X + camera.distancetocorner * (float)Math.Cos(angle - camera.angletocorner));
         camera.p2.Z = (camera.position.Z + camera.distancetocorner * (float)Math.Sin(angle - camera.angletocorner));
     }
-    //test
 }
