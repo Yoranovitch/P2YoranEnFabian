@@ -29,12 +29,12 @@ class Application
 
         if (Keyboard.GetState().IsKeyDown(Key.P))
         {
-            camera.FOVDegrees ++;
+            camera.FOVDegrees++;
         }
 
         if (Keyboard.GetState().IsKeyDown(Key.M))
         {
-            camera.FOVDegrees --;
+            camera.FOVDegrees--;
         }
 
         // Turn left
