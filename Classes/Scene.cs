@@ -9,7 +9,7 @@ class Scene
     public List<Plane> planes;
     public List<Light> lights;
     public List<Intersection> intersections;
-    public float finalresult, distance, shadowdistance, t;
+    public float finalresult, finalresult2, distance, distance2, shadowdistance, t;
     public Vector3 v, u;
 
     public Scene()
@@ -28,6 +28,54 @@ class Scene
         spheres.Add(new Sphere(new Vector3(3, 5, 5), 1, new Vector3(0.0f, 0.0f, 1.0f), false));
         lights.Add(new Light(new Vector3(2, 5, 0), 3));
         planes.Add(new Plane(new Vector3(5, 0, 5), 5, new Vector3(0, -1, 0), new Vector3(1.0f, 1.0f, 1.0f)));
+    }
+
+    public int Mirror(Intersection i)
+    {
+        Vector3 nextdirection = i.ray.direction - 2 * i.prim.normal * (Vector3.Dot(i.ray.direction, i.prim.normal));
+        Ray ray = new Ray(i.position, nextdirection, i.x, i.y);
+
+        Vector3 idiff;
+        Intersection nexti = null;
+        float d, e, f, dis2, result3, result4;
+        distance2 = ray.raydistance;
+
+        foreach (Sphere s in spheres)
+        {
+            // Creates a discriminant
+            idiff = ray.start - s.position;
+            d = Vector3.Dot(ray.direction, ray.direction);
+            e = 2 * Vector3.Dot(idiff, ray.direction);
+            f = Vector3.Dot(idiff, idiff) - (s.radius * s.radius);
+            dis2 = (e * e) - (4 * d * f);
+
+            // Checks for intersections and store the distance to the closest in "distance"
+            // Makes a intersection for every intersection that is closer than the previous one
+            if (dis2 > 0)
+            {
+                result3 = (float)((-e + Math.Sqrt(dis2)) / (2 * d));
+                result4 = (float)((-e - Math.Sqrt(dis2)) / (2 * d));
+
+                if (result3 > 0 && result4 > 0)
+                    finalresult2 = Math.Min(result3, result4);
+                else
+                    finalresult2 = Math.Max(result3, result4);
+
+                if (finalresult2 < distance2)
+                {
+                    distance2 = finalresult2;
+                    nexti = new Intersection(s, distance2, ray, s.reflexive);
+                }
+
+                nexti.x = ray.X;
+                nexti.y = ray.Y;
+            }
+        }
+        //if (nexti.reflexive)
+        //    Mirror(nexti);
+        if(nexti != null)
+            return ShadowRays(nexti);
+        return 0;
     }
 
     public int ShadowRays(Intersection i)
@@ -143,7 +191,7 @@ class Scene
                 if(finalresult < distance)
                 {
                     distance = finalresult;
-                    i1 = new Intersection(s, distance, ray);
+                    i1 = new Intersection(s, distance, ray, s.reflexive);
                 }
 
                 i1.x = ray.X;
@@ -158,7 +206,7 @@ class Scene
             if (Vector3.Dot(p.normal, ray.direction) < 0)
             {
                 Vector3 IntPoint = ray.start + (t * ray.direction);
-                i2 = new Intersection(p, t, ray);
+                i2 = new Intersection(p, t, ray, false);
                 i2.x = ray.X;
                 i2.y = ray.Y;
             }
