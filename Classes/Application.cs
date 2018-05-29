@@ -1,12 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Template;
-using OpenTK.Graphics.OpenGL;
 using OpenTK.Input;
-using OpenTK;
 
 class Application
 {
@@ -24,6 +18,7 @@ class Application
 
     public void Update()
     {
+        // Calls the draw methods in raytracer
         raytracer.DrawDebug();
         raytracer.Render();
     }

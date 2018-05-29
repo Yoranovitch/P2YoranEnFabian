@@ -1,9 +1,6 @@
 ﻿using OpenTK;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using static Raytracer;
 
 class Scene
@@ -23,8 +20,8 @@ class Scene
         intersections = new List<Intersection>();
 
         // Adds the primitives and lights
-        spheres.Add(new Sphere(new Vector3(6, 5, 8), 1, new Vector3(0.0f, 1.0f, 0.0f), true));
-        spheres.Add(new Sphere(new Vector3(4, 5, 4), 1, new Vector3(0.0f, 0.0f, 1.0f), false));
+        spheres.Add(new Sphere(new Vector3(6, 5, 7), 2, new Vector3(0.0f, 1.0f, 0.0f), true));
+        spheres.Add(new Sphere(new Vector3(3, 5, 4), 1, new Vector3(0.0f, 0.0f, 1.0f), false));
         lights.Add(new Light(new Vector3(2, 5, 0), 3));
     }
 
@@ -33,7 +30,7 @@ class Scene
         Vector3 diff, direction;
         float length;
         Ray ray;
-        float kleurfactor = 0;
+        float kleurfactor = 0.2f;
  
         // Creates a new ray
         // If this ray not intersects return a color to color the intersection that was used to shoot the ray from
@@ -46,7 +43,7 @@ class Scene
             ray = new Ray(i.position + (0.1f * direction), direction, i.x, i.y);
             ray.raydistance = length;
 
-            CheckSpheres(ray);
+            ray = CheckSpheres(ray);
 
             shadowdistance = ray.raydistance;
 
@@ -65,7 +62,7 @@ class Scene
 
     // Shoots a ray from a intersection to a every single light
     // Checks if there is a new intersection
-    public void CheckSpheres(Ray ray)
+    public Ray CheckSpheres(Ray ray)
     {
         float a, b, c, dis, result1, result2;
         Vector3 diff;
@@ -90,10 +87,11 @@ class Scene
                 {
                     ray.raydistance = Math.Min(result1, result2);
                     ray.lightcollision = true;
-                    return;
+                    return ray;
                 } 
             }
         }
+        return ray;
     }
 
     // Checks if the given ray intersects with primitives in the scene
