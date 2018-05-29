@@ -126,4 +126,5 @@ class Application
         camera.p2.X = (camera.position.X + camera.distancetocorner * (float)Math.Cos(angle - camera.angletocorner));
         camera.p2.Z = (camera.position.Z + camera.distancetocorner * (float)Math.Sin(angle - camera.angletocorner));
     }
+    //test
 }
