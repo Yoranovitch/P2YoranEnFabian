@@ -7,7 +7,7 @@ class Raytracer
     Vector3 origin;
     Vector3 direction;
     float distance = 10;
-    Scene scene;
+    public Scene scene;
     Surface Sur;
     public Camera camera;
 
@@ -89,7 +89,12 @@ class Raytracer
         foreach (Intersection i in scene.intersections)
         {         
             // Give the pixel that represent a intersection a color
-            Sur.pixels[i.x + i.y * Sur.width] = scene.ShadowRays(i);
+            if(i.reflexive)
+            {
+                Sur.pixels[i.x + i.y * Sur.width] = scene.Mirror(i);
+            }
+            else
+                Sur.pixels[i.x + i.y * Sur.width] = scene.ShadowRays(i);
 
             // Draw the shadowrays that belong to the intersections
             if(Sur.pixels[i.x + i.y * Sur.width] != 0)
