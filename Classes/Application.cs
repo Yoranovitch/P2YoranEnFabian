@@ -26,6 +26,17 @@ class Application
     // Camera Movement
     public void HandleInput()
     {
+
+        if (Keyboard.GetState().IsKeyDown(Key.P))
+        {
+            camera.FOVDegrees++;
+        }
+
+        if (Keyboard.GetState().IsKeyDown(Key.M))
+        {
+            camera.FOVDegrees--;
+        }
+
         // Turn left
         if (Keyboard.GetState().IsKeyDown(Key.A))
         {
